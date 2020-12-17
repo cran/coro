@@ -1,7 +1,7 @@
-158d7d8ab9a24c1cbff4c8d24727e730 *DESCRIPTION
+709cb0ea80797ff8fc826df3bbbe4b65 *DESCRIPTION
 1029f3d791e7aaea488027e51eb8d23b *LICENSE
 7d0c6cb56542b2671c9e3061d56196d0 *NAMESPACE
-6a1e855ebf127f99b6d433b1d16f669d *NEWS.md
+9b2e1b35e9e09d2f6f038be09ed56586 *NEWS.md
 6fa43ab4668c596109f3fd252e275ab8 *R/aaa.R
 1a4025a9cd2d5bd5ceaffdd327122986 *R/async.R
 89846c4f42f96b8505cb22e025324282 *R/generator.R
@@ -15,13 +15,13 @@ ad14f9a805486da7ff926c44d78fdf72 *R/parser.R
 c7fec9b50ee4bce70c28a7aa54009837 *R/utils-node.R
 5711cf80f608e3e4272aca61023f9570 *R/utils-parser.R
 c84e6b0f46eb9f6659e7dbf0a4e7e350 *R/utils-promises.R
-24b4fbd424c006e91c4f89210f23ddda *R/utils-vector.R
+bb9f94dbefb2f377961bf26aedcdeb64 *R/utils-vector.R
 cb14231dc943140e89b2d7c7377b1fde *R/utils.R
-f873b7bd4d84bdc07e7f28f86260859f *README.md
+b70656195a0a234716c34168d4567fb7 *README.md
 f392bbd70e7c0579289c772dc2ce07a6 *build/vignette.rds
 f9689ff6ca6213b8176bb53ad0d11523 *inst/doc/generator.R
 6202dbb0e3596c9befbc0383982ddb7e *inst/doc/generator.Rmd
-1eba73fd60ea13ae292f045f90b57203 *inst/doc/generator.html
+5279e42c18e6b75c18880bb81d511fb9 *inst/doc/generator.html
 3e48d601f7d5dd06c33e79e824fb379f *man/as_iterator.Rd
 c45c46b9143b961476abddd15fcd2cef *man/async.Rd
 cb41b72485db49715c171abb6fc19022 *man/async_collect.Rd
@@ -63,6 +63,6 @@ e943038a48dc82ff29495aec1095769f *tests/testthat/test-iterator.R
 3238fcc1e9a1f3d87322c57202ecaa9f *tests/testthat/test-parser-if.R
 0bf268653adc88b72af53a46d6a19792 *tests/testthat/test-parser-loop.R
 7935cfa109e3d3fde6c03c3b64dd798a *tests/testthat/test-parser.R
-d50ff76091694a975f235f1bed4733dd *tests/testthat/test-step-reduce.R
+83991e70456efa63836340cfd87c7ba1 *tests/testthat/test-step-reduce.R
 879918ec56cc936c6d8c2c3514c9bc71 *tests/testthat/test-step.R
 6202dbb0e3596c9befbc0383982ddb7e *vignettes/generator.Rmd

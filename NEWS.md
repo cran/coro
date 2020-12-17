@@ -1,3 +1,7 @@
+# coro 1.0.1
+
+* `collect()` now preserves lists and data frames (#32).
+
 # coro 1.0.0
 
 This is the first public version of coro.
