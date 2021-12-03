@@ -1,6 +1,18 @@
+# coro 1.0.2
+
+* The exhaustion sentinel is now `as.symbol(".__exhausted__.")`
+  instead of `as.symbol("exhausted")` to reduce the risk of
+  collisions. It is also recommended to never store the exhaustion
+  sentinel in an environment or list, and instead use it as a
+  temporary value to further reduce the risk of collisions (#35).
+
+* Fixed a leak that occurred via JIT caching (#36).
+
+
 # coro 1.0.1
 
 * `collect()` now preserves lists and data frames (#32).
+
 
 # coro 1.0.0
 

@@ -1,4 +1,3 @@
-
 test_that("can create non-yielding generator functions", {
   gen <- generator(function() "foo")
   expect_identical(collect(gen()), list("foo"))
@@ -295,7 +294,7 @@ test_that("generators call as_iterator() method", {
           x <<- x + 1L
           x
         } else {
-          quote(exhausted)
+          exhausted()
         }
       }
     }

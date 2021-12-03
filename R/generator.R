@@ -122,7 +122,7 @@ generator0 <- function(fn, type = "generator") {
 
   # Create the generator factory (returned by `generator()` and
   # entered by `async()`)
-  out <- new_function(fmls, quote({
+  factory <- new_function(fmls, quote({
     # Evaluate here so the formals of the generator factory do not
     # mask our variables
     `_private` <- rlang::env(`_parent`)
@@ -145,6 +145,10 @@ generator0 <- function(fn, type = "generator") {
       env <- new_generator_env(env, info)
       user_env <- env$user_env
 
+      # The compiler caches function bodies, so inline a weak
+      # reference to avoid leaks (#36)
+      weak_env <- new_weakref(env)
+
       # Forward arguments inside the user space of the state machine
       lapply(names(fmls), function(arg) env_bind_arg(user_env, arg, frame = generator_env))
 
@@ -153,7 +157,7 @@ generator0 <- function(fn, type = "generator") {
 
       # Create the generator instance. This is a function that resumes
       # a state machine.
-      gen <- blast(function(arg) {
+      instance <- inject(function(arg) {
         # Forward generator argument inside the state machine environment
         delayedAssign("arg", arg, assign.env = env)
 
@@ -190,7 +194,7 @@ generator0 <- function(fn, type = "generator") {
         # environment.
         env$jumped <- TRUE
         out <- evalq(envir = user_env,
-          base::evalq(envir = !!env, {
+          base::evalq(envir = rlang::wref_key(!!weak_env), {
             env_poke_exits(user_env, exits)
             !!state_machine
           })
@@ -200,20 +204,22 @@ generator0 <- function(fn, type = "generator") {
         out
       })
 
-      env$.self <- gen
+      env$.self <- instance
 
       if (is_string(type, "async")) {
         # Step into the generator right away
-        gen(NULL)
+        instance(NULL)
       } else {
-        structure(gen, class = "coro_generator_instance")
+        structure(instance, class = "coro_generator_instance")
       }
     })
   }))
 
-  structure(out, class = c(paste0("coro_", type), "function"))
+  structure(factory, class = c(paste0("coro_", type), "function"))
 }
 
+# Creates a child of the coro namespace that holds all the variables
+# used by the generator runtime
 new_generator_env <- function(parent, info) {
   env <- env(ns_env("coro"))
   user_env <- env(parent, .__generator_instance__. = TRUE)
@@ -355,7 +361,7 @@ is_generator_factory <- function(x) {
 }
 
 with_try_catch <- function(handlers, expr) {
-  blast(tryCatch(expr, !!!handlers))
+  inject(tryCatch(expr, !!!handlers))
 }
 
 utils::globalVariables(c(
