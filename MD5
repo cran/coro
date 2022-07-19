@@ -1,13 +1,14 @@
-dd6536bd855d367150cbdb83fca183f7 *DESCRIPTION
+101ad9c4bc3362451afe6c97326c7878 *DESCRIPTION
 1029f3d791e7aaea488027e51eb8d23b *LICENSE
-7d0c6cb56542b2671c9e3061d56196d0 *NAMESPACE
-31ea46782c6f8327782539e524573b67 *NEWS.md
-f3c6ac8bb27b28017da6a324538562fc *R/aaa.R
+b55e8880f796a3535a7aac55888f2b9c *NAMESPACE
+2a8f4bc4688df71513ba9986ccafedf2 *NEWS.md
+6a210d0dfa114e671b2ebdfe4997ffcb *R/aaa.R
 1a4025a9cd2d5bd5ceaffdd327122986 *R/async.R
+f2aa592674e4bd3990f9534c1f72a0d7 *R/coro-package.R
 a6c021391d018b5ef1ef565c477e857c *R/generator.R
 00bc2654d2d39d1cbbd175c746d4b0fb *R/iterator-adapt.R
 e796379498b598a71a42b9ba4b8adc4b *R/iterator-collect.R
-6dd8f545ee4750590cddfd2d54f703a5 *R/iterator.R
+0910d50f44446791c3b99ac3b404720d *R/iterator.R
 3d7c92c6fcbd9176d42e4139d5d64f2c *R/parser.R
 76dde28560e45017940d4c71dde9c2a6 *R/step-builder.R
 75c9ecc68afb98ebbfa5ce7778ab8b9c *R/step-reduce.R
@@ -21,7 +22,7 @@ b70656195a0a234716c34168d4567fb7 *README.md
 f7d2025da1387477416399c5af56de3e *build/vignette.rds
 f9689ff6ca6213b8176bb53ad0d11523 *inst/doc/generator.R
 6202dbb0e3596c9befbc0383982ddb7e *inst/doc/generator.Rmd
-495d9f5f147e966b8739c392c43fce35 *inst/doc/generator.html
+ff73bc46babfc3372aa3379c466b973c *inst/doc/generator.html
 3e48d601f7d5dd06c33e79e824fb379f *man/as_iterator.Rd
 c45c46b9143b961476abddd15fcd2cef *man/async.Rd
 cb41b72485db49715c171abb6fc19022 *man/async_collect.Rd
@@ -29,7 +30,7 @@ cb41b72485db49715c171abb6fc19022 *man/async_collect.Rd
 53578f93432b12b0cd57416a0b434e5e *man/async_ops.Rd
 b7f13fa706191ffa21d1978515698430 *man/async_sleep.Rd
 e569c9d0e2b039e2139d24c15ac631a2 *man/collect.Rd
-45f384a20705621bf1df7e0c558309b7 *man/coro-package.Rd
+c589916ec67f101ecc39e3bf7097bb59 *man/coro-package.Rd
 4f54e772b4b85237cb8df34b08bef233 *man/coro_debug.Rd
 cb1e46f469cfbbbde29c8b5113e1d789 *man/figures/lifecycle-archived.svg
 c0d2e5a54f1fa4ff02bf9533079dd1f7 *man/figures/lifecycle-defunct.svg
@@ -41,7 +42,7 @@ c3978703d8f40f2679795335715e98f4 *man/figures/lifecycle-experimental.svg
 53b3f893324260b737b3c46ed2a0e643 *man/figures/lifecycle-stable.svg
 1c1fe7a759b86dc6dbcbe7797ab8246c *man/figures/lifecycle-superseded.svg
 85e743bbd232c28cad19b08429c9b430 *man/generator.Rd
-2e7628efca0ecc2815cd8aad39fb4047 *man/iterator.Rd
+b52830f9a32efca5b78d0dd56abfb81b *man/iterator.Rd
 23c2fca98cdaf965629cb8bca064ac78 *man/yield.Rd
 b53cce7b5e6d672bc6dec82f8871b5c3 *tests/testthat.R
 3023020d62acfdf3a57c8e6d94c5756c *tests/testthat/_snaps/async.md
@@ -58,7 +59,7 @@ e7839b27579003ce152738a768d53eb8 *tests/testthat/helper-parser.R
 48e2468e8c937fddc4c8a5563b41c056 *tests/testthat/test-generator.R
 71b7c539d8510acd1888622fc0022ec8 *tests/testthat/test-iterator-adapt.R
 47d74fe4096342c262db97ca43356490 *tests/testthat/test-iterator-for.R
-eb9633ea1a08ef3d8391b844d118268c *tests/testthat/test-iterator.R
+9c5e0d2909907ec58d5adfa0150ba1ea *tests/testthat/test-iterator.R
 4288ba51b79360a835fd8c35a7a90dfa *tests/testthat/test-parser-block.R
 86a04a8ec0aba84263495cd7f58fe56f *tests/testthat/test-parser-if.R
 382428c464da3372fb4d4eb4cca0b71b *tests/testthat/test-parser-loop.R
