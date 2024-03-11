@@ -1,3 +1,8 @@
+# coro 1.0.4
+
+* Internal fix for R-devel.
+
+
 # coro 1.0.3
 
 * `coro::as_iterator()` method added for reticulate Python objects,
