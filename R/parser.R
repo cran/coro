@@ -324,7 +324,7 @@ block_states <- function(block, counter, continue, last, return, info) {
       curr_refs <<- nested_refs
     } else {
       node_poke_cdr(prev_node, nested_node)
-      node_poke_cdr(prev_refs, nested_refs)
+      prev_refs %&&% node_poke_cdr(prev_refs, nested_refs)
     }
 
     node <<- nested_node
@@ -568,7 +568,7 @@ strip_explicit_return <- function(expr) {
 }
 return_call <- function(info) {
   if (is_null(info$async_ops)) {
-    quote(return(last_value()))
+    quote(return(exhausted()))
   } else {
     quote(return(as_promise(last_value())))
   }
@@ -882,9 +882,10 @@ for_states <- function(preamble,
     nested_states <- condition_state(condition, nested_counter)
   }
 
-  cleanup <- expr(
+  cleanup <- expr({
+    iter_close(iterators[[!!loop_depth]])
     iterators[[!!loop_depth]] <- NULL
-  )
+  })
 
   loop_states(
     preamble = preamble,
@@ -995,8 +996,8 @@ try_catch_states <- function(preamble,
   depth <- machine_depth(counter)
   try_catch_depth <- depth + 1L
 
-  # Handlers can't be evaluated until runtime. We store them in a list
-  # dynamically.
+  # Handlers can't be evaluated until runtime. We store their expressions in a
+  # list. They are evaluated when the user enters the `tryCatch()` state.
   handler_body <- expr({
     !!!preamble %&&% list(user_call(preamble))
     handlers[[!!try_catch_depth]] <- user(base::list(!!!handlers_exprs))

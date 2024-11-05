@@ -21,7 +21,7 @@
               state[[1L]] <- 3L
           }, `3` = {
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -60,7 +60,7 @@
                   "after2"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -93,7 +93,7 @@
                   "after"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -141,7 +141,7 @@
                   "after"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -187,7 +187,7 @@
                   "after"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -222,7 +222,7 @@
                   "after"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -251,7 +251,7 @@
               state[[1L]] <- 3L
           }, `3` = {
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -291,7 +291,52 @@
               state[[1L]] <- 5L
           }, `5` = {
               exhausted <- TRUE
+              return(exhausted())
+          })
+          exhausted <- TRUE
+          invisible(exhausted())
+      }
+
+# `{` blocks - nested
+
+    Code
+      generator_body(function() {
+        "before1"
+        "before2"
+        {
+          "before-inner"
+          yield(1L)
+          "after-inner"
+        }
+        "after1"
+        "after2"
+      })
+    Output
+      {
+          if (exhausted) {
+              return(invisible(exhausted()))
+          }
+          repeat switch(state[[1L]], `1` = {
+              user({
+                  "before1"
+                  "before2"
+                  "before-inner"
+                  1L
+              })
+              state[[1L]] <- 2L
+              suspend()
               return(last_value())
+          }, `2` = {
+              .last_value <- if (missing(arg)) NULL else arg
+              state[[1L]] <- 3L
+          }, `3` = {
+              user({
+                  "after-inner"
+                  "after1"
+                  "after2"
+              })
+              exhausted <- TRUE
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -332,7 +377,7 @@
                   "after2"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -371,7 +416,72 @@
                   "after2"
               })
               exhausted <- TRUE
+              return(exhausted())
+          })
+          exhausted <- TRUE
+          invisible(exhausted())
+      }
+
+# `{` blocks - complex nesting
+
+    Code
+      generator_body(function() {
+        "before"
+        {
+          "before-inner"
+          yield(1L)
+          {
+            yield(2L)
+            yield(3L)
+          }
+          "after-inner"
+        }
+        "after"
+      })
+    Output
+      {
+          if (exhausted) {
+              return(invisible(exhausted()))
+          }
+          repeat switch(state[[1L]], `1` = {
+              user({
+                  "before"
+                  "before-inner"
+                  1L
+              })
+              state[[1L]] <- 2L
+              suspend()
               return(last_value())
+          }, `2` = {
+              .last_value <- if (missing(arg)) NULL else arg
+              state[[1L]] <- 3L
+          }, `3` = {
+              user({
+                  2L
+              })
+              state[[1L]] <- 4L
+              suspend()
+              return(last_value())
+          }, `4` = {
+              .last_value <- if (missing(arg)) NULL else arg
+              state[[1L]] <- 5L
+          }, `5` = {
+              user({
+                  3L
+              })
+              state[[1L]] <- 6L
+              suspend()
+              return(last_value())
+          }, `6` = {
+              .last_value <- if (missing(arg)) NULL else arg
+              state[[1L]] <- 7L
+          }, `7` = {
+              user({
+                  "after-inner"
+                  "after"
+              })
+              exhausted <- TRUE
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -410,7 +520,7 @@
                   "after"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())
@@ -449,7 +559,7 @@
                   "after"
               })
               exhausted <- TRUE
-              return(last_value())
+              return(exhausted())
           })
           exhausted <- TRUE
           invisible(exhausted())

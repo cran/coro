@@ -1,3 +1,23 @@
+# coro 1.1.0
+
+* Iterator functions are now allowed to have a `close` argument.
+  If they do, they will be called with a `close = TRUE` value
+  when iteration is terminated early. This gives the opportunity
+  to clean up resources.
+
+* Generators now run `on.exit()` expressions when they are closed.
+
+* Iterators managed by `coro::loop()` and by generator `for` loops
+  are now cleaned up when terminated early, either because of an
+  error or because of a `break` (#52).
+
+* Implicit and explicit return values of generators are no longer
+  yielded. This is consistent with Javascript and Python and simplifies
+  certain idioms (#51).
+
+* Generators and async functions assigned in namespaces no
+  longer produce R CMD check notes about visible bindings (#40).
+
 # coro 1.0.5
 
 * Async functions created by `coro::async()` now return their
